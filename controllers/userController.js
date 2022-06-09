@@ -12,7 +12,7 @@ module.exports = {
     },
     // getSingleUser
     getSingleUser(req, res) {
-        User.findOne({ _id: req.params.id })
+        User.findOne({ _id: req.params.userId })
             .then((user) => 
                 res.json(user)
             )
@@ -47,18 +47,41 @@ module.exports = {
     },
     // deleteUser
     deleteUser(req, res) {
-        User.findOneAndRemove(
-            { _id: req.params.userId }
-        )
-        .then((user) =>
+        User.findOneAndRemove({ _id: req.params.userId })
+        .then((user) => 
             !user
-                ? res.status(404).json({ message: 'No user found with that id' })
-                : res.json({ message: 'User successfully deleted' })
+              ? res.json({ message: 'User not found' })
+              : res.json(user)
         )
         .catch((err) => {
             console.log(err);
             res.status(500).json(err);
-      });
-
- },
+        });
+    },
+    // addFriend
+    addFriend(req, res) {
+        User.findOneAndUpdate(
+          { _id: req.params.userId },
+          { $push: { friends: req.params.friendId } },
+          { runValidators: true, new: true }
+        )
+        .then((user) =>
+            !user
+              ? res.json({ message: 'User not found' })
+              : res.json(user))
+        .catch(err => res.status(500).json(err));
+    },
+    // deleteFriend
+    deleteFriend(req, res) {
+        User.findOneAndUpdate(
+          { _id: req.params.userId },
+          { $pull: { friends: req.params.friendId } },
+          { new: true }
+        )
+        .then((user) =>
+            !user
+              ? res.json({ message: 'User not found' })
+              : res.json(user))
+        .catch(err => res.status(500).json(err));
+    }
 };
