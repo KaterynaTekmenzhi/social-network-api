@@ -18,7 +18,17 @@ Once you've cloned the repo,
 
 ## Usage 
 
-See video for a *[walkthrough](https://drive.google.com/file/d/16WVRRA9FG5HDSP63DiN61SUu-SN8dhSU/view)
+Watch all routes being tested in the video provided 
+*[Click for a video walkthrough](https://drive.google.com/file/d/16WVRRA9FG5HDSP63DiN61SUu-SN8dhSU/view)
+
+The following screenshot shows GET route to return all users
+![Screenshot of a GET user route](./assets/GetUsers.png)
+
+The following screenshot shows POST route to create a thought
+![Screenshot of POST route to create a thought](./assets/CreateThought.png)
+
+The following screenshot shows POST route to create a reaction
+![screenshot of POST route to create a reaction](./assets/AddReaction.png)
 
 ## License
 
