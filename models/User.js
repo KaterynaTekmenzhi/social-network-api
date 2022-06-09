@@ -37,8 +37,7 @@ const userSchema = new Schema(
 );
 
 // creating virtual for user
-// this is used to show the number of thoughts
-// and the number of friends
+// this is used to show the number of friends
 userSchema
   .virtual('friendCount')
   .get(function() {
